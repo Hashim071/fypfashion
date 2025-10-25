@@ -32,8 +32,15 @@
                                 <!-- product -->
                                 <div class="ul-cart-product">
                                     <a href="{{ route('public.place_order', $item['id']) }}" class="ul-cart-product-img">
-                                        <img src="{{ asset('storage/' . $item['image']) }}"
-                                            alt="{{ $item['name'] }}">
+
+                                        @php
+                                            // Item image ke liye URL decide karein
+                                            $itemImageUrl = Str::startsWith($item['image'], 'admin/')
+                                                ? asset($item['image'])
+                                                : asset('storage/' . $item['image']);
+                                        @endphp
+
+                                        <img src="{{ $itemImageUrl }}" alt="{{ $item['name'] }}">
                                     </a>
                                     <a href="{{ route('public.place_order', $item['id']) }}" class="ul-cart-product-title">
                                         {{ $item['name'] }}

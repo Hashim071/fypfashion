@@ -96,7 +96,6 @@
                             {{-- Hidden fields for customization data will be added here by JS --}}
                             <div id="customization-hidden-fields"></div>
 
-
                             {{-- Buttons --}}
                             <div class="d-flex gap-3">
                                 @if ($product->is_customizable)
