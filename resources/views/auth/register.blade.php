@@ -71,7 +71,7 @@
             <div class="ul-breadcrumb">
                 <h2 class="ul-breadcrumb-title">Register</h2>
                 <div class="ul-breadcrumb-nav">
-                    <a href="index.html"><i class="flaticon-home"></i> Home</a>
+                    <a href="{{ route('public.home') }}"><i class="flaticon-home"></i> Home</a>
                     <i class="flaticon-arrow-point-to-right"></i>
                     <span class="current-page">Register</span>
                 </div>

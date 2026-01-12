@@ -76,7 +76,7 @@
     <!-- HEADER SECTION START -->
     <header class="ul-header">
         <!-- header top -->
-        <div class="ul-header-top">
+        {{-- <div class="ul-header-top">
             <div class="ul-header-top-slider splide">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -123,7 +123,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
+
 
         <!-- header bottom -->
         <div class="ul-header-bottom">
@@ -141,21 +142,21 @@
 
                         <!-- search form -->
                         <div class="ul-header-search-form-wrapper flex-grow-1 flex-shrink-0">
-                            <form action="#" class="ul-header-search-form">
+                            <form action="{{ route('public.search') }}" method="GET" class="ul-header-search-form">
                                 <div class="dropdown-wrapper">
-                                    <select name="search-category" id="ul-header-search-category">
-                                        <option data-placeholder="true">Select Category</option>
-                                        <option value="1">Clothing</option>
-                                        <option value="2">Watches</option>
-                                        <option value="3">Jewellery</option>
-                                        <option value="4">Glasses</option>
+                                    <select name="category" id="ul-header-search-category">
+                                        <option value="">All Categories</option>
+                                        @foreach ($headerCategories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="ul-header-search-form-right">
-                                    <input type="search" name="header-search" id="ul-header-search"
-                                        placeholder="Search Here">
-                                    <button type="submit"><span class="icon"><i
-                                                class="flaticon-search-interface-symbol"></i></span></button>
+                                    <input type="search" name="query" id="ul-header-search" placeholder="Search Here"
+                                        required>
+                                    <button type="submit">
+                                        <span class="icon"><i class="flaticon-search-interface-symbol"></i></span>
+                                    </button>
                                 </div>
                             </form>
 
@@ -176,12 +177,51 @@
                     </div>
 
                     <!-- actions -->
-                    <div class="ul-header-actions">
-                        <button class="ul-header-mobile-search-opener d-xxl-none"><i
-                                class="flaticon-search-interface-symbol"></i></button>
-                        <a href="{{ route('login') }}"><i class="flaticon-user"></i></a>
-                    </div>
+                    <div class="ul-header-actions" style="display: flex; align-items: center; gap: 15px;">
+                        <button class="ul-header-mobile-search-opener d-xxl-none">
+                            <i class="flaticon-search-interface-symbol"></i>
+                        </button>
 
+                        @auth
+                            <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('customer.dashboard') }}"
+                                style="text-decoration: none; display: flex; align-items: center;">
+                                <div
+                                    style="
+                position: relative;
+                width: 44px;
+                height: 44px;
+                padding: 2.5px;
+                border-radius: 50%;
+                background: conic-gradient(#ea4335 0% 25%, #4285f4 25% 50%, #34a853 50% 75%, #fbbc05 75% 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            ">
+                                    <div
+                                        style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #9c27b0;
+                    color: white;
+                    font-weight: 600;
+                    font-size: 18px;
+                    border: 2px solid white;
+                    font-family: Arial, sans-serif;
+                ">
+                                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                                    </div>
+                                </div>
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" style="text-decoration: none; color: inherit; font-size: 24px;">
+                                <i class="flaticon-user"></i>
+                            </a>
+                        @endauth
+                    </div>
                     <!-- sidebar opener -->
                     <div class="d-inline-flex">
                         <button class="ul-header-sidebar-opener"><i class="flaticon-hamburger"></i></button>
@@ -197,56 +237,10 @@
     <!-- FOOTER SECTION START -->
     <footer class="ul-footer">
         <div class="ul-inner-container">
-            <div class="ul-footer-top">
-                <!-- single links column -->
-                <div class="ul-footer-top-widget">
-                    <h3 class="ul-footer-top-widget-title">Brands</h3>
-
-                    <div class="ul-footer-top-widget-links">
-                        <a href="#">Zara</a>
-                        <a href="#">Guess</a>
-                        <a href="#">Mango</a>
-                        <a href="#">LCWaikiki</a>
-                    </div>
-                </div>
-
-                <!-- single links column -->
-                <div class="ul-footer-top-widget">
-                    <h3 class="ul-footer-top-widget-title">Categories</h3>
-
-                    <div class="ul-footer-top-widget-links">
-                        <a href="#">Dresses</a>
-                        <a href="#">Tops</a>
-                        <a href="#">Bottoms</a>
-                        <a href="#">Footwear</a>
-                    </div>
-                </div>
-
-                <!-- single links column -->
-                <div class="ul-footer-top-widget">
-                    <h3 class="ul-footer-top-widget-title">Services</h3>
-
-                    <div class="ul-footer-top-widget-links">
-                        <a href="#">Sale</a>
-                        <a href="#">Quick Ship</a>
-                        <a href="#">New Designs</a>
-                        <a href="#">Protection Plan</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- single widget -->
-            <div class="ul-footer-middle-widget align-self-center">
-                <a href="index.html"><img src="{{ asset('admin/assets/images/logo/cutom-logo.png') }}"
-                        alt="logo" class="logo"></a>
-            </div>
-            {{-- </div> --}}
-
             <div class="ul-footer-bottom">
                 <p class="copyright-txt">Copyright 2024 © <a href="https://temptics.com/"
-                        class="ul-footer-bottom-link">Goftech</a></p>
-                {{-- <img src="assets/img/payment-methods.png" alt="payment methods logos"> --}}
+                        class="ul-footer-bottom-link">Custom Couture</a></p>
+                <img src="{{ asset('assets/img/payment-methods.png') }}" alt="payment methods logos">
             </div>
         </div>
     </footer>

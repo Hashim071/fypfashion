@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Customer\AllReturnController;
 use App\Http\Controllers\Admin\Return\ReturnController;
 use App\Http\Controllers\Admin\Review\ReviewController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Contact\ContactController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Setting\SettingController;
@@ -69,8 +70,9 @@ Route::get('/blog/{blog:slug}', [HomeController::class, 'blogDetails'])->name('p
 Route::post('/contact', [HomeController::class, 'storeContact'])->name('contact.store');
 
 Route::get('/customizable', [HomeController::class, 'customizable'])->name('public.customizble');
-
-
+Route::get('/search', [HomeController::class, 'search'])->name('public.search');
+// All Products (Shop) Page
+Route::get('/all-products', [HomeController::class, 'allProducts'])->name('public.all_products');
 
 // PayFast
 Route::get('/pay/{orderId}', [PayfastController::class, 'initiatePayment'])->name('payfast.pay');
@@ -78,6 +80,10 @@ Route::get('/payment/success', [PayfastController::class, 'paymentSuccess'])->na
 Route::get('/payment/failure', [PayfastController::class, 'paymentFailure'])->name('payment.failure');
 
 
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('reset-password', [ForgotPasswordController::class, 'updatePassword'])->name('password.update');
 
 
 // Admin routes

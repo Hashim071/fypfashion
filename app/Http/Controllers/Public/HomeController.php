@@ -295,12 +295,37 @@ class HomeController extends Controller
 
     public function customizable()
     {
-        // Sirf woh products fetch karein jinka 'is_customizable' status true hai.
-        // latest() se naye product pehle aayenge aur take(10) se sirf 10 products show honge.
         $customizableProducts = Product::where('is_customizable', true)->latest()->take(10)->get();
-
-        // Products ko home view me pass karein.
-        // Agar aapki blade file ka naam kuch aur hai to 'home' ki jagah woh naam likhein.
         return view('public.public', compact('customizableProducts'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $categoryId = $request->input('category');
+
+        // Search logic
+        $products = Product::query()
+            ->when($query, function ($q) use ($query) {
+                return $q->where('name', 'LIKE', "%{$query}%")
+                    ->orWhere('description', 'LIKE', "%{$query}%");
+            })
+            ->when($categoryId, function ($q) use ($categoryId) {
+                return $q->where('category_id', $categoryId);
+            })
+            ->paginate(12);
+
+        return view('public.search_results', compact('products', 'query'));
+    }
+
+    public function allProducts()
+    {
+        // Saare products fetch karein (Pagination ke saath taake page load heavy na ho)
+        $products = Product::with('category')->paginate(12);
+
+        // Sidebar ke liye categories (agar zaroorat ho)
+        $allCategories = Category::all();
+
+        return view('public.all_products', compact('products', 'allCategories'));
     }
 }

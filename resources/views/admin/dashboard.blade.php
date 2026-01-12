@@ -102,7 +102,7 @@
 
 
                 <!-- Top Course Start -->
-                <div class="card mt-24">
+                {{-- <div class="card mt-24">
                     <div class="card-body">
                         <div class="mb-20 flex-between flex-wrap gap-8">
                             <h4 class="mb-0">Study Statistics</h4>
@@ -129,7 +129,7 @@
                         <div id="doubleLineChart" class="tooltip-style y-value-left"></div>
 
                     </div>
-                </div>
+                </div> --}}
                 <!-- Top Course End -->
 
             </div>

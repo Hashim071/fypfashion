@@ -117,7 +117,7 @@
 
                                     <!-- 🔹 Invoice -->
                                     <a href="{{ route('orders.invoice', $order->id) }}"
-                                        class="bg-secondary-50 text-secondary-600 py-2 px-14 rounded-pill hover-bg-secondary-600 hover-text-white">
+                                        class="bg-info-50 text-info-600 py-2 px-14 rounded-pill hover-bg-info-600 hover-text-white">
                                         Invoice
                                     </a>
 

@@ -16,9 +16,9 @@
                                     <div class="ul-banner-slide-txt">
                                         <span class="ul-banner-slide-sub-title">Perfect for Summer Evenings</span>
                                         <h1 class="ul-banner-slide-title">Casual and Stylish for All Seasons</h1>
-                                        <p class="ul-banner-slide-price">Starting From <span class="price">$129</span></p>
+                                        {{-- <p class="ul-banner-slide-price">Starting From <span class="price">$129</span></p>
                                         <a href="shop.html" class="ul-btn">SHOP NOW <i
-                                                class="flaticon-up-right-arrow"></i></a>
+                                                class="flaticon-up-right-arrow"></i></a> --}}
                                     </div>
                                 </div>
 
@@ -30,9 +30,9 @@
                                     <div class="ul-banner-slide-txt">
                                         <span class="ul-banner-slide-sub-title">Perfect for Summer Evenings</span>
                                         <h1 class="ul-banner-slide-title">Casual and Stylish for All Seasons</h1>
-                                        <p class="ul-banner-slide-price">Starting From <span class="price">$129</span></p>
+                                        {{-- <p class="ul-banner-slide-price">Starting From <span class="price">$129</span></p>
                                         <a href="shop.html" class="ul-btn">SHOP NOW <i
-                                                class="flaticon-up-right-arrow"></i></a>
+                                                class="flaticon-up-right-arrow"></i></a> --}}
                                     </div>
                                 </div>
 
@@ -44,9 +44,9 @@
                                     <div class="ul-banner-slide-txt">
                                         <span class="ul-banner-slide-sub-title">Perfect for Summer Evenings</span>
                                         <h1 class="ul-banner-slide-title">Casual and Stylish for All Seasons</h1>
-                                        <p class="ul-banner-slide-price">Starting From <span class="price">$129</span></p>
+                                        {{-- <p class="ul-banner-slide-price">Starting From <span class="price">$129</span></p>
                                         <a href="shop.html" class="ul-btn">SHOP NOW <i
-                                                class="flaticon-up-right-arrow"></i></a>
+                                                class="flaticon-up-right-arrow"></i></a> --}}
                                     </div>
                                 </div>
 
@@ -132,7 +132,7 @@
                                     {{-- Countdown logic yahan add karein agar zaroori hai --}}
                                 </div>
                             </div>
-                            <a href="shop.html" class="ul-btn">View All Collection <i
+                            <a href="{{ route('public.all_products') }}" class="ul-btn">View All Collection <i
                                     class="flaticon-up-right-arrow"></i></a>
                         </div>
 
@@ -261,23 +261,28 @@
                                     {{-- ✅ INLINE STYLE YAHAN ADD KIYA GAYA HAI --}}
                                     <div class="ul-product-horizontal-img"
                                         style="width: 120px; height: 120px; flex-shrink: 0; overflow: hidden;">
+                                        {{-- Product Details ka link --}}
+                                        <a href="{{ route('public.product.details', $product->id) }}"
+                                            style="display: block; width: 100%; height: 100%;">
 
-                                        @if ($product->image)
-                                            @if (Str::startsWith($product->image, 'admin/'))
-                                                {{-- ✅ INLINE STYLE YAHAN BHI ADD KIYA GAYA HAI --}}
-                                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
-                                                    style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                            @if ($product->image)
+                                                @if (Str::startsWith($product->image, 'admin/'))
+                                                    {{-- Seeder Image --}}
+                                                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
+                                                        style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                                @else
+                                                    {{-- Uploaded Image --}}
+                                                    <img src="{{ asset('storage/' . $product->image) }}"
+                                                        alt="{{ $product->name }}"
+                                                        style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                                                @endif
                                             @else
-                                                {{-- ✅ INLINE STYLE YAHAN BHI ADD KIYA GAYA HAI --}}
-                                                <img src="{{ asset('storage/' . $product->image) }}"
-                                                    alt="{{ $product->name }}"
+                                                {{-- Default Placeholder --}}
+                                                <img src="{{ asset('path/to/default-image.png') }}" alt="No Image"
                                                     style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                                             @endif
-                                        @else
-                                            {{-- Placeholder image ke liye bhi style add karein --}}
-                                            <img src="{{ asset('path/to/default-image.png') }}" alt="No Image"
-                                                style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-                                        @endif
+
+                                        </a>
                                     </div>
 
                                     <div class="ul-product-horizontal-txt">

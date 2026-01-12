@@ -72,7 +72,7 @@ class CustomizationSeeder extends Seeder
 
             // 👇 UPDATED: Added new fields from your migration
             'style_description' => 'Please add a pocket on the left side and make the collar stiff.',
-            'reference_image_url' => 'uploads/designs/sample_design.png',
+            'reference_image_url' => 'Images/Women Casual Top.jpg',
             'delivery_date' => Carbon::now()->addWeek(), // Example: delivery in one week
         ]);
     }

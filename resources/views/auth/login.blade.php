@@ -170,68 +170,14 @@
     </div>
     <!-- SIDEBAR SECTION END -->
 
-    <!-- HEADER SECTION START -->
-    <header class="ul-header">
-        <!-- header top -->
-        <div class="ul-header-top">
-            <div class="ul-header-top-slider splide">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                        <li class="splide__slide">
-                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </header>
-    <!-- HEADER SECTION END -->
-
     <main>
         <!-- BREADCRUMB SECTION START -->
         <div class="ul-container">
             <div class="ul-breadcrumb">
                 <h2 class="ul-breadcrumb-title">Log In</h2>
                 <div class="ul-breadcrumb-nav">
-                    <a href="index.html"><i class="flaticon-home"></i> Home</a>
+                    <a href="{{ route('public.home') }}"><i class="flaticon-home"></i> Home</a>
+
                     <i class="flaticon-arrow-point-to-right"></i>
                     <span class="current-page">Log In</span>
                 </div>
@@ -293,11 +239,15 @@
                                         @enderror
                                     </div>
 
-
                                 </div>
 
                                 <!-- submit btn -->
                                 <button type="submit" class="btn btn-primary">Log In</button>
+
+                                {{-- login.blade.php mein login button ke neechay ya password field ke saath --}}
+                                <div class="text-end mt-2">
+                                    <a href="{{ route('password.request') }}">Forgot Password?</a>
+                                </div>
                             </form>
 
                             <div class="text-center mt-3">

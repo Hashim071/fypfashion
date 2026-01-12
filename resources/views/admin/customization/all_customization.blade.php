@@ -77,7 +77,7 @@
                                 <td><span class="h6 mb-0 fw-medium text-gray-300">{{ $customization->color ?? '-' }}</span>
                                 </td>
                                 <td><span
-                                        class="h6 mb-0 fw-medium text-gray-300">{{ $customization->style_description ?? '-' }}</span>
+                                        class="h6 mb-0 fw-medium text-gray-300">{{ Str::limit($customization->style_description, 25, '...') }}</span>
                                 </td>
                                 <td><span
                                         class="h6 mb-0 fw-medium text-gray-300">{{ $customization->delivery_date ? \Carbon\Carbon::parse($customization->delivery_date)->format('d M Y') : '-' }}</span>
